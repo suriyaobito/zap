@@ -22,6 +22,7 @@ package zap
 
 import (
 	"errors"
+	"fmt"
 	"sort"
 	"time"
 
@@ -237,6 +238,8 @@ func NewDevelopmentConfig() Config {
 
 // Build constructs a logger from the Config and Options.
 func (cfg Config) Build(opts ...Option) (*Logger, error) {
+	fmt.Println("Inside log builder function zap/config.go")
+	fmt.Println("BuildEncoder function is called")
 	enc, err := cfg.buildEncoder()
 	if err != nil {
 		return nil, err
