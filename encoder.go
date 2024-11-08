@@ -54,6 +54,7 @@ func RegisterEncoder(name string, constructor func(zapcore.EncoderConfig) (zapco
 	if name == "" {
 		return errNoEncoderNameSpecified
 	}
+
 	if _, ok := _encoderNameToConstructor[name]; ok {
 		return fmt.Errorf("encoder already registered for name %q", name)
 	}
@@ -70,12 +71,16 @@ func newEncoder(name string, encoderConfig zapcore.EncoderConfig) (zapcore.Encod
 		return nil, errors.New("missing EncodeTime in EncoderConfig")
 	}
 
+	fmt.Println("concurrent read is allowed and write is blocked through encoderMutext.RLock() ")
 	_encoderMutex.RLock()
+	fmt.Println("when function exits, lock is released encoderMutext.RUnLock() ")
 	defer _encoderMutex.RUnlock()
+
 	if name == "" {
 		return nil, errNoEncoderNameSpecified
 	}
 	constructor, ok := _encoderNameToConstructor[name]
+	fmt.Println(constructor)
 	if !ok {
 		return nil, fmt.Errorf("no encoder registered for name %q", name)
 	}
