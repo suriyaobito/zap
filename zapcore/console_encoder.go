@@ -56,6 +56,7 @@ type consoleEncoder struct {
 // encoder configuration, it will omit any element whose key is set to the empty
 // string.
 func NewConsoleEncoder(cfg EncoderConfig) Encoder {
+	fmt.Println("New console Encoder is called with args coming in cfg = EncoderConfig = ", cfg)
 	if cfg.ConsoleSeparator == "" {
 		// Use a default delimiter of '\t' for backwards compatibility
 		cfg.ConsoleSeparator = "\t"

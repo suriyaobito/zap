@@ -80,7 +80,6 @@ func newEncoder(name string, encoderConfig zapcore.EncoderConfig) (zapcore.Encod
 		return nil, errNoEncoderNameSpecified
 	}
 	constructor, ok := _encoderNameToConstructor[name]
-	println(constructor)
 	if !ok {
 		return nil, fmt.Errorf("no encoder registered for name %q", name)
 	}
