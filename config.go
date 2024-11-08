@@ -329,5 +329,9 @@ func (cfg Config) openSinks() (zapcore.WriteSyncer, zapcore.WriteSyncer, error) 
 }
 
 func (cfg Config) buildEncoder() (zapcore.Encoder, error) {
+	fmt.Println("Inside buildEncoder function ")
+	fmt.Println("Return type is new zapcore.Encoder , error")
+	fmt.Println("Argument passed in is cfg.Encoding = ", cfg.Encoding)
+	fmt.Println("Argument passed in is cfg.EncoderConfig = ", cfg.EncoderConfig)
 	return newEncoder(cfg.Encoding, cfg.EncoderConfig)
 }

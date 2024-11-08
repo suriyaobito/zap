@@ -62,6 +62,10 @@ func RegisterEncoder(name string, constructor func(zapcore.EncoderConfig) (zapco
 }
 
 func newEncoder(name string, encoderConfig zapcore.EncoderConfig) (zapcore.Encoder, error) {
+	fmt.Println("Inside new encoder function")
+	fmt.Println("Checking if encoderConfig.TimeKey is not null but EncodeTime is not defined")
+	fmt.Println("encoderConfig.TimeKey = ", encoderConfig.TimeKey)
+	fmt.Println("encoderConfig.EncodeTime = ", encoderConfig.EncodeTime)
 	if encoderConfig.TimeKey != "" && encoderConfig.EncodeTime == nil {
 		return nil, errors.New("missing EncodeTime in EncoderConfig")
 	}
