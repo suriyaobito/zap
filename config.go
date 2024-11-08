@@ -241,6 +241,7 @@ func (cfg Config) Build(opts ...Option) (*Logger, error) {
 	fmt.Println("Inside log builder function zap/config.go")
 	fmt.Println("BuildEncoder function is called")
 	enc, err := cfg.buildEncoder()
+	fmt.Println("Encoder got from BuildEncoder enc = ", enc)
 	if err != nil {
 		return nil, err
 	}
